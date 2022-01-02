@@ -252,6 +252,7 @@ def main():
             'query': get_query(), 'sorts': SORTS }
 #}}}
 #{{{ results
+@bottle.route('/')
 @bottle.route('/results')
 @bottle.view('results')
 def results():
@@ -379,4 +380,3 @@ def main():
     return {'url': url}
 #}}}
 # vim: fdm=marker:tw=80:ts=4:sw=4:sts=4:et
-
