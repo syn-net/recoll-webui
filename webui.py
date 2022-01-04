@@ -258,6 +258,16 @@ def main():
     return { 'dirs': get_dirs(config['dirs'], config['dirdepth']),
             'query': get_query(), 'sorts': SORTS }
 #}}}
+#{{{ favicon
+@bottle.route('/favicon')
+@bottle.route('/favicon.ico')
+@bottle.route('/favicon@64')
+def favicon():
+    return bottle.static_file('./favicon@64.ico', root='./static')
+@bottle.route('/favicon@64.png')
+#{{{ favicon (png)
+def favicon_png():
+    return bottle.static_file('./favicon@64.png', root='./static')
 #{{{ results
 @bottle.route('/results')
 @bottle.view('results')
