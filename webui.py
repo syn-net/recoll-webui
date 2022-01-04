@@ -242,9 +242,16 @@ def recoll_search(q, dosnippets=True):
 @bottle.route('/static/:path#.+#')
 def server_static(path):
     return bottle.static_file(path, root='./static')
+#{{{ static
+@bottle.route('/')
+@bottle.route('/index')
+@bottle.route('/index.html')
+@bottle.route('/home')
+@bottle.route('/root')
+def index():
+    return bottle.static_file('./index.html', root='./static')
 #}}}
 #{{{ main
-@bottle.route('/')
 @bottle.view('main')
 def main():
     config = get_config()
@@ -252,7 +259,6 @@ def main():
             'query': get_query(), 'sorts': SORTS }
 #}}}
 #{{{ results
-@bottle.route('/')
 @bottle.route('/results')
 @bottle.view('results')
 def results():
